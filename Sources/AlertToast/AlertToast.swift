@@ -28,7 +28,7 @@ fileprivate struct AnimatedCheckmark: View {
         }
         .trim(from: 0, to: percentage)
         .stroke(color, style: StrokeStyle(lineWidth: CGFloat(size / 8), lineCap: .round, lineJoin: .round))
-        .animation(Animation.spring().speed(0.75).delay(0.25))
+        .animation(Animation.easeOut(duration: 0.5).speed(0.75).delay(0.25))
         .onAppear {
             percentage = 1.0
         }
@@ -68,7 +68,7 @@ fileprivate struct AnimatedXmark: View {
         }
         .trim(from: 0, to: percentage)
         .stroke(color, style: StrokeStyle(lineWidth: CGFloat(size / 8), lineCap: .round, lineJoin: .round))
-        .animation(Animation.spring().speed(0.75).delay(0.25))
+        .animation(Animation.easeOut(duration: 0.5).speed(0.75).delay(0.25))
         .onAppear {
             percentage = 1.0
         }
@@ -434,7 +434,7 @@ public struct AlertToastModifier: ViewModifier{
                 alert()
                     .onTapGesture {
                         if tapToDismiss{
-                            withAnimation(Animation.spring()){
+                            withAnimation(Animation.easeOut(duration: 0.5)){
                                 isPresenting = false
                             }
                         }
@@ -462,7 +462,7 @@ public struct AlertToastModifier: ViewModifier{
                     
                     .onTapGesture {
                         if tapToDismiss{
-                            withAnimation(Animation.spring()){
+                            withAnimation(Animation.easeOut(duration: 0.5)){
                                 isPresenting = false
                             }
                         }
@@ -475,7 +475,7 @@ public struct AlertToastModifier: ViewModifier{
                 alert()
                     .onTapGesture {
                         if tapToDismiss{
-                            withAnimation(Animation.spring()){
+                            withAnimation(Animation.easeOut(duration: 0.5)){
                                 isPresenting = false
                             }
                         }
@@ -497,7 +497,7 @@ public struct AlertToastModifier: ViewModifier{
                 .overlay(ZStack{
                     main()
                 }
-                .animation(Animation.spring())
+                .animation(Animation.easeOut(duration: 0.5))
                 )
                 .valueChanged(value: isPresenting, onChange: { (presented) in
                     if presented{
@@ -524,7 +524,7 @@ public struct AlertToastModifier: ViewModifier{
                     .frame(maxWidth: .infinity, maxHeight: alert().displayMode == .alert ? .infinity : -hostRect.midY / 2, alignment: .center)
                     .offset(x: 0, y: alert().displayMode == .alert ? 0 : offset)
                     .edgesIgnoringSafeArea(alert().displayMode == .alert ? .all : .bottom)
-                    .animation(Animation.spring()))
+                    .animation(Animation.easeOut(duration: 0.5)))
                 )
                 .valueChanged(value: isPresenting, onChange: { (presented) in
                     if presented{
@@ -543,7 +543,7 @@ public struct AlertToastModifier: ViewModifier{
         
         if duration > 0{
             DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
-                withAnimation(Animation.spring()){
+                withAnimation(Animation.easeOut(duration: 0.5)){
                     isPresenting = false
                 }
             }
